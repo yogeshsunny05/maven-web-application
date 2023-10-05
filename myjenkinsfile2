@@ -1,0 +1,37 @@
+pipeline{
+    agent any
+options {
+  timestamps ()
+}
+    tools {
+  maven 'maven-3.9.4'
+}
+    stages {
+  stage('branchcheckout') {
+    steps {
+      git branch: 'development', credentialsId: '5f8e2813-4402-4f85-aa70-5b2a8d29122e', url: 'https://github.com/yogeshsunny05/maven-web-application.git'
+    }
+  }
+
+  stage('executesoonarqubereport') {
+    steps {
+      sh "mvn sonar:sonar"
+    }
+  }
+
+  stage('upload into nexus') {
+    steps {
+      sh "mvn deploy"
+    }
+  }
+stage('deploy into tomcat') {
+  steps {
+     sshagent(['9c391efe-3d6f-47af-a9cd-692e43763ca3']) {
+    sh " scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.40.59:/opt/apache-tomcat-9.0.80/webapps "
+}
+  }
+}
+
+}//stages_closing
+
+}//pipeline_closing
