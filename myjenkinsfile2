@@ -3,6 +3,10 @@ pipeline{
 options {
   timestamps ()
 }
+triggers {
+  pollSCM ('* * * * *')
+}
+
     tools {
   maven 'maven-3.9.4'
 }
@@ -24,13 +28,13 @@ options {
       sh "mvn deploy"
     }
   }
-stage('deploy into tomcat') {
+/*stage('deploy into tomcat') {
   steps {
      sshagent(['9c391efe-3d6f-47af-a9cd-692e43763ca3']) {
     sh " scp -o StrictHostKeyChecking=no target/maven-web-application.war ec2-user@172.31.40.59:/opt/apache-tomcat-9.0.80/webapps "
 }
   }
-}
+}*/
 
 }//stages_closing
 
