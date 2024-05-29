@@ -97,13 +97,13 @@
 	    <repository>
 	      <id>nexus</id>
 	      <name>facebook Releases Nexus Repository</name>
-	      <url>http://172.31.32.59:9980/yogesh/repository/facebook-releases/</url>
+	      <url>http://172.31.2.179:8081/repository/yogesh-release/</url>
 	    </repository>
 	    
 	    <snapshotRepository>
 	      <id>nexus</id>
 	      <name>facebook Snapshot Nexus Repository </name>
-	      <url>http://172.31.32.59:9980/yogesh/repository/facebook-snapshot/</url>
+	      <url>http://172.31.2.179:8081/repository/yogesh/</url>
 	    </snapshotRepository>
 	    
 	</distributionManagement>
